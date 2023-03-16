@@ -89,7 +89,7 @@ def check():
 	###### -Gdy temperatura "wewnątrz hali" jest większa/równa -1 st. oraz mniejsza od +1 st. oraz temperatura na "tafli" jest mniejsza od -1.2 st.
 	if float(hal) >=-1 and float(hal) < 1 and float(taf_max) < -1.2:
 		print("przekaznik 1(2) wylaczony")
-		requests.get(url1_onff, auth = ('admin', 'admin00'))
+		requests.get(url1_off, auth = ('admin', 'admin00'))
 
 	###### -Gdy temperatura "wewnątrz hali" jest większa/równa +1 st. oraz mniejsza od +2 st. oraz gdy temperatura tafli jest mniejsza od temperatury ("wewnątrz hali" dzielonej przez -5)-1.2
 	if float(hal) >= 1 and float(hal) < 2 and (float(taf_max) < (float(hal) / -5)-1.2):
