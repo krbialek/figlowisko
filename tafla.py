@@ -55,14 +55,14 @@ def check():
 
 	###### -Gdy temperatura "wewnątrz hali" jest większa/równa -1 st. oraz mniejsza od +1 st. oraz temperatura na "tafli" jest większa/równa -0.2 st.
 
-	if float(hal) >= -1 and float(hal) < 1 and (float(taf_l) < -0.2 or float(taf_p) < -0.2):
+	if float(hal) >= -1 and float(hal) < 1 and float(taf_max) >= -0.2:
 	    print("przekaznik 1(1) wlaczony")
 	    requests.get(url1_on, auth = ('admin', 'admin00'))
 
 	###### -Gdy temperatura "wewnątrz hali" jest większa/równa +1 st. oraz mniejsza od +2 st. oraz gdy temperatura tafli jest większa/równa temperaturze "wewnątrz hali" dzielonej przez -5
 
 	if float(hal) >= 1 and float(hal) < 2 and (float(taf_max) >= float(hal) / -5):
-	    print("przekaznik 1(2) wlaczony")
+	    print("przekaznik 1(2) wlaczony",taf_max, " >= ", float(hal) / -5)
 	    requests.get(url1_on, auth = ('admin', 'admin00'))
 	    
 	###### -Gdy temperatura "wewnątrz hali" jest większa/równa +2 st. oraz mniejsza od +20 st. oraz gdy temperatura tafli jest większa/równa temperaturze "wewnątrz hali" dzielonej przez -4
@@ -87,33 +87,33 @@ def check():
 	    requests.get(url1_off, auth = ('admin', 'admin00'))
 
 	###### -Gdy temperatura "wewnątrz hali" jest większa/równa -1 st. oraz mniejsza od +1 st. oraz temperatura na "tafli" jest mniejsza od -1.2 st.
-	if float(hal) >=-1 and float(hal) < 1 and (float(taf_l) < -1.2 or float(taf_p) < -1.2):
+	if float(hal) >=-1 and float(hal) < 1 and float(taf_max) < -1.2:
 		print("przekaznik 1(2) wylaczony")
 		requests.get(url1_onff, auth = ('admin', 'admin00'))
 
-	###### -Gdy temperatura "wewnątrz hali" jest większa/równa +1 st. oraz mniejsza od +2 st. oraz gdy temperatura tafli jest mniejsza od temperatury ("wewnątrz hali" dzielonej przez -5)-1
-	if float(hal) >= 1 and float(hal) < 2 and (float(taf_max) < (float(hal) / -5)-1):
-		print("przekaznik 1(2) wylaczony")
+	###### -Gdy temperatura "wewnątrz hali" jest większa/równa +1 st. oraz mniejsza od +2 st. oraz gdy temperatura tafli jest mniejsza od temperatury ("wewnątrz hali" dzielonej przez -5)-1.2
+	if float(hal) >= 1 and float(hal) < 2 and (float(taf_max) < (float(hal) / -5)-1.2):
+		print("przekaznik 1(2) wylaczony", taf_max, " ")
 		requests.get(url1_off, auth = ('admin', 'admin00'))
 
-	###### -Gdy temperatura "wewnątrz hali" jest większa/równa +2 st. oraz mniejsza od +20 st. oraz gdy temperatura tafli jest mniejsza od temperatury ("wewnątrz hali" dzielonej przez -4)-1
-	if float(hal) >= 2 and float(hal)  < 20 and (float(taf_max) < (float(hal) / -4)-1):
+	###### -Gdy temperatura "wewnątrz hali" jest większa/równa +2 st. oraz mniejsza od +20 st. oraz gdy temperatura tafli jest mniejsza od temperatury ("wewnątrz hali" dzielonej przez -4)-1.2
+	if float(hal) >= 2 and float(hal)  < 20 and (float(taf_max) < (float(hal) / -4)-1.2):
 		print("przekaznik 1(3) wylaczony", taf_max, " ")
 		requests.get(url1_off, auth = ('admin', 'admin00'))
 
-	###### -Gdy temperatura "wewnątrz hali" jest większa/równa +20 st. oraz gdy temperatura tafli jest większa/równa temperaturze ("wewnątrz hali" dzielonej przez -3)-1 
-	if float(hal) >= 20 and (float(taf_max) >= (float(hal) / -3)-1):
-		print("przekaznik 1(4) wylaczony", float(taf_max), " >= ", (float(hal) / -3)-1)
+	###### -Gdy temperatura "wewnątrz hali" jest większa/równa +20 st. oraz gdy temperatura tafli jest większa/równa temperaturze ("wewnątrz hali" dzielonej przez -3)-1.2 
+	if float(hal) >= 20 and (float(taf_max) < (float(hal) / -3)-1.2):
+		print("przekaznik 1(4) wylaczony", float(taf_max), " >= ", (float(hal) / -3)-1.2)
 		requests.get(url1_off, auth = ('admin', 'admin00'))
 
 
 	roznica = float(taf_l) - float(taf_p) 
-	if(abs(roznica) > 0.2 ):
+	if(abs(roznica) > 0.4 ):
 	    print("przekaznik 2 wlaczony, roznica ", abs(roznica))
 	    requests.get(url2_on, auth = ('admin', 'admin00'))
-	elif (abs(roznica) <= 0.2 ):
+	elif (abs(roznica) <= 0.4 ):
 	    print("przekaznik 2 wylaczony, roznica ", abs(roznica))
-	    requests.get(url2_on, auth = ('admin', 'admin00'))
+	    requests.get(url2_off, auth = ('admin', 'admin00'))
 	   
 	
 
