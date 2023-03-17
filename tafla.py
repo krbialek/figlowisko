@@ -130,5 +130,5 @@ if __name__ == '__main__':
     full_reset()
     while(True):
         check()
-        time.sleep(10)
+        time.sleep(170)
 
