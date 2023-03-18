@@ -101,9 +101,9 @@ def check():
 		print("przekaznik 1(3) wylaczony", taf_max, " ")
 		requests.get(url1_off, auth = ('admin', 'admin00'))
 
-	###### -Gdy temperatura "wewnątrz hali" jest większa/równa +9 st. oraz gdy temperatura tafli jest większa/równa temperaturze ("wewnątrz hali" dzielonej przez -3)-1.2 
-	if float(hal) >= 9 and (float(taf_max) < (float(hal) / -3)-1.2):
-		print("przekaznik 1(4) wylaczony", float(taf_max), " >= ", (float(hal) / -3)-1.2)
+	###### -Gdy temperatura "wewnątrz hali" jest większa/równa +9 st. oraz gdy temperatura tafli jest większa/równa temperaturze ("wewnątrz hali" dzielonej przez -3)-0.6 
+	if float(hal) >= 9 and (float(taf_max) < (float(hal) / -3)-0.6):
+		print("przekaznik 1(4) wylaczony", float(taf_max), " >= ", (float(hal) / -3)-0.6)
 		requests.get(url1_off, auth = ('admin', 'admin00'))
 
 
